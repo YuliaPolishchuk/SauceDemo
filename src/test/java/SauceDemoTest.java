@@ -26,6 +26,7 @@ public class SauceDemoTest {
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
         boolean elementOnPage = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).isDisplayed();
+        Assert.assertTrue(elementOnPage);
     }
 
     @Test
