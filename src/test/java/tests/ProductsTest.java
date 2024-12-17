@@ -1,36 +1,37 @@
 package tests;
 
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import static org.testng.Assert.assertEquals;
-
-public class SauceDemo extends BaseTest {
+public class ProductsTest extends BaseTest {
 
     @Test
     public void checkLoginPasswordWithWell() {
+        SoftAssert softAssert = new SoftAssert();
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        assertEquals(
+        softAssert.assertEquals(
                 productsPage.getTitle(),
                 "Products",
                 "Логин не выполнен");
         productsPage.click();
-        assertEquals(
+        softAssert.assertEquals(
                 productsPage.getRemove(),
                 "Remove",
                 "Add to cart");
         yourCart.open();
-        assertEquals(
+        softAssert.assertEquals(
                 yourCart.getTitle(),
                 "Your Cart",
                 "Products");
-        assertEquals(
+        softAssert.assertEquals(
                 yourCart.getShoppingCartBadge(),
                 "1",
                 "");
-        assertEquals(
+        softAssert.assertEquals(
                 yourCart.getInventoryItemName(),
                 "Sauce Labs Backpack",
                 "");
+        softAssert.assertAll();
     }
 }
