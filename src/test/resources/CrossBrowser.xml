@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="SauceDemo CrossBrowserTest" parallel="tests">
+    <listeners>
+        <listener class-name="utils.TestListener"/>
+    </listeners>
+    <test name="Chrome">
+        <classes>
+            <class name="tests.ProductsTest"/>
+            <class name="tests.ProductsTest">
+                <methods>
+                    <include name="checkLoginPasswordWithWell"/>
+                    <exclude name="checkNegativeLogin"/>
+                </methods>
+            </class>
+            <class name="tests.BaseTest"/>
+            <parameter name="browser" value="chrome"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Yandex">
+        <classes>
+            <class name="tests.ProductsTest"/>
+            <class name="tests.BaseTest"/>
+            <parameter name="browser" value="yandex"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Yandex">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+    </test> <!-- Test -->
+</suite>
